@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Testing Execution Report</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
+    line-height: 1.5;
+    margin: 40px auto;
+    max-width: 850px;
+    padding: 0 20px;
+  }
+  h1 { color: #1e3a8a; border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 12px; }
+  h2 { color: #1e40af; margin-top: 28px; border-bottom: 1px solid #f3f4f6; padding-bottom: 6px; }
+  h3 { color: #1d4ed8; margin-top: 20px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { border: 1px solid #d1d5db; padding: 10px 12px; text-align: left; }
+  th { background-color: #f3f4f6; color: #111827; font-weight: 600; }
+  .badge-pass { background-color: #dcfce7; color: #15803d; font-weight: bold; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+  .img-box { margin: 16px 0; border: 1px solid #e5e7eb; border-radius: 6px; padding: 8px; background: #fafafa; }
+  .img-box img { width: 100%; height: auto; border-radius: 4px; display: block; }
+  .caption { font-size: 12px; color: #6b7280; margin-top: 6px; text-align: center; }
+  pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px; border-radius: 6px; font-size: 13px; }
+  .page-break { page-break-after: always; }
+</style>
+</head>
+<body>
+
+<h1>Test Case Management & Full-Stack Testing Verification Report</h1>
+<p><strong>System:</strong> Task Management System</p>
+<p><strong>Environment:</strong> Localhost (Spring Boot 8080 / Angular 4200 / PostgreSQL)</p>
+<p><strong>Status:</strong> All 5 Tiers Executed and Verified</p>
+
+<h2>1. Executive Summary</h2>
+<p>This report presents verification evidence for the complete testing ladder of the Task Management System: Frontend Unit Testing (Angular/Jasmine), Backend Unit Testing (JUnit 5/Mockito), REST API Integration Testing (MockMvc), End-to-End Automated Testing (Playwright), and Performance Load Testing (Apache JMeter).</p>
+
+<h2>2. Test Execution Scorecard</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Tier</th>
+      <th>Testing Level</th>
+      <th>Framework / Tool</th>
+      <th>Metrics / Scenarios</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Frontend Unit</td>
+      <td>Jasmine / Angular Runner</td>
+      <td>12 / 12 Tests Passed</td>
+      <td><span class="badge-pass">PASSED</span></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Backend Unit</td>
+      <td>JUnit 5 + Mockito</td>
+      <td>18 / 18 Tests Passed</td>
+      <td><span class="badge-pass">PASSED</span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>API & Integration</td>
+      <td>Spring MockMvc</td>
+      <td>3 / 3 Suites Passed</td>
+      <td><span class="badge-pass">PASSED</span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>End-to-End (E2E)</td>
+      <td>Playwright (Google Chrome)</td>
+      <td>1 / 1 Flow Passed (~7.6s)</td>
+      <td><span class="badge-pass">PASSED</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Load & Performance</td>
+      <td>Apache JMeter CLI</td>
+      <td>400 Requests, 0.00% Errors, Avg 7ms</td>
+      <td><span class="badge-pass">PASSED</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>3. Visual Execution Evidence</h2>
+
+<h3>3.1 Frontend Unit Tests (Jasmine)</h3>
+<p>Validates form controls, required title/priority/due-date validations, past date rejections, and mock HTTP calls.</p>
+<pre>Command: npx ng test --no-watch</pre>
+<div class="img-box">
+  <img src="screenshots/01-frontend-unit-tests.png" alt="Frontend Unit Tests Result">
+  <div class="caption">Figure 1: Jasmine/Karma test runner execution showing 12/12 successful specs</div>
+</div>
+
+<h3>3.2 Backend Unit Tests (JUnit 5 + Mockito)</h3>
+<p>Validates state transitions (TODO -> IN_PROGRESS -> COMPLETED), past date guards, test case generation, and approval execution rules.</p>
+<pre>Command: .\mvnw.cmd test -Dtest=*Service*Test</pre>
+<div class="img-box">
+  <img src="screenshots/02-backend-unit-tests.png" alt="Backend Unit Tests Result">
+  <div class="caption">Figure 2: Surefire output showing 18/18 tests passed across TaskServiceImpl and TestCaseServiceImpl</div>
+</div>
+
+<div class="page-break"></div>
+
+<h3>3.3 API & Integration Tests (MockMvc)</h3>
+<p>Validates HTTP status codes (201 Created, 400 Bad Request, 404 Not Found), request validation schemas, and global exception mapping.</p>
+<pre>Command: .\mvnw.cmd test -Dtest=TaskControllerIntegrationTest</pre>
+<div class="img-box">
+  <img src="screenshots/03-api-integration-tests.png" alt="API Integration Tests Result">
+  <div class="caption">Figure 3: Spring MockMvc controller integration test suite results</div>
+</div>
+
+<h3>3.4 End-to-End Browser Automation (Playwright)</h3>
+<p>Automates the complete browser lifecycle: create task -> view details -> generate AI test cases -> approve draft -> execute and mark PASS.</p>
+<pre>Command: npx playwright test</pre>
+<div class="img-box">
+  <img src="screenshots/04-e2e-playwright.png" alt="Playwright E2E Result">
+  <div class="caption">Figure 4: Playwright headless Chrome automation passing the full user journey</div>
+</div>
+
+<div class="page-break"></div>
+
+<h3>3.5 Load & Performance Testing (Apache JMeter)</h3>
+<p>Validates API throughput, stability, and latency under concurrent traffic load.</p>
+<pre>Command: jmeter -n -t performance/TaskManagement_LoadTest.jmx -l performance/results.jtl -e -o performance/report</pre>
+<div class="img-box">
+  <img src="screenshots/05-jmeter-load-test.png" alt="JMeter CLI Result">
+  <div class="caption">Figure 5: JMeter summary report showing 400 requests with 0.00% error rate and 7ms avg response time</div>
+</div>
+
+<div class="img-box">
+  <img src="screenshots/06-jmeter-html-report.png" alt="JMeter HTML Dashboard">
+  <div class="caption">Figure 6: JMeter HTML dashboard with throughput and latency distribution metrics</div>
+</div>
+
+<h2>4. Conclusion</h2>
+<p>All 5 tiers of the testing strategy are verified with a 100% pass rate. The application complies with all specified domain rules, REST contracts, browser flows, and performance criteria.</p>
+
+</body>
+</html>
